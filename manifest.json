@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Booky",
+  "version": "1.0.0",
+  "permissions": ["activeTab", "bookmarks"],
+  "action": {
+    "default_popup": "index.html"
+  }
+}

@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.41"
+    "@types/webextension-polyfill": "^0.12.2",
+    "vue": "^3.2.41",
+    "webextension-polyfill": "^0.12.0"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "2.0.0-beta.31",
