@@ -1,14 +1,22 @@
 import { createApp } from 'vue'
-import './style.css'
+import './style.scss'
 import App from './app.vue'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
+import { VTreeview } from 'vuetify/labs/VTreeview'
+import { aliases, md } from 'vuetify/iconsets/md'
 
 const vuetify = createVuetify({
-    components,
-    directives,
+    icons: {
+        defaultSet: 'md',
+        aliases,
+        sets: {
+            md,
+        },
+    },
+    components: {
+        VTreeview,
+    },
 })
 
 const app = createApp(App)
