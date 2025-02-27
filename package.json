@@ -10,13 +10,18 @@
   },
   "dependencies": {
     "@types/webextension-polyfill": "^0.12.2",
+    "@vueuse/core": "^12.7.0",
+    "@vueuse/rxjs": "^12.7.0",
+    "dexie-observable": "4.0.1-beta.13",
     "material-icons": "^1.13.14",
+    "rxjs": "^7.8.2",
     "vue": "^3.5.13",
     "webextension-polyfill": "^0.12.0"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "2.0.0-beta.31",
     "@vitejs/plugin-vue": "^5.2.1",
+    "dexie": "^4.0.11",
     "from": "^0.1.7",
     "import": "^0.0.6",
     "sass-embedded": "^1.85.1",

@@ -6,6 +6,7 @@ import { createVuetify } from 'vuetify'
 import { VTreeview } from 'vuetify/labs/VTreeview'
 import { aliases, md } from 'vuetify/iconsets/md'
 
+
 const vuetify = createVuetify({
     icons: {
         defaultSet: 'md',

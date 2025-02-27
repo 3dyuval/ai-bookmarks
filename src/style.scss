@@ -4,4 +4,9 @@
 html {
   width: 500px;
   height: 700px;
+
+  &, body, #app {
+    overflow: hidden !important;
+  }
+
 }

@@ -1,34 +1,42 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { bookmarks } from 'webextension-polyfill'
-import { TreeItem } from './tree-item'
+import { useObservable } from '@vueuse/rxjs'
+import { BookmarkService, BookmarkNode, db } from './bookmark-service'
+import 'dexie-observable';
+import { useLastChanged, useTimeAgo } from "@vueuse/core";
 
-
-const bookmarkTree = ref<TreeItem[]>([]);
-
-async function getBookmarksTree() {
-  return bookmarks.getTree().then((bookmarkTreeNodes) => {
-    return bookmarkTreeNodes.map(node =>
-        TreeItem.fromBookmarkNode(node)
-    );
-  });
-}
-
-function onClickOrganize() {
-  getBookmarksTree().then(tree => {
-    bookmarkTree.value = tree;
-  })
-}
-
-
+const bookmarks = useObservable(db.observeBookmarks());
+const changed = useLastChanged(bookmarks)
+const timeAgo = useTimeAgo(changed)
 </script>
 
 <template>
-  <div>
-    <h1>AI Bookmarks Manager</h1>
-    <h2>Organize all bookmarks with a single click!</h2>
-    <!--    TODO: Tree view vuetifyjs -->
-    <v-btn prepend-icon="star" @click="onClickOrganize">Get bookmarks</v-btn>
-    <v-treeview :items="bookmarkTree"/>
+  <div class="popup flex-column pa-4">
+    <div class="tree-content">
+      <v-treeview
+          :items="bookmarks"
+          activatable
+          open-on-click
+      >
+        <template #prepend="{ item }">
+          <v-icon>
+            {{ item.url ? 'mdi-bookmark' : 'mdi-folder' }}
+          </v-icon>
+        </template>
+        <template #item="{ item, props }">
+          <v-list-item v-bind="props">
+            <template #title>
+              {{ item.title }}
+              <v-chip
+                  size="x-small"
+                  class="ml-2"
+              >
+                {{ item.source }}
+              </v-chip>
+            </template>
+          </v-list-item>
+        </template>
+      </v-treeview>
+    </div>
   </div>
 </template>
